@@ -1,0 +1,627 @@
+body {
+    /* Tema de sala de cine oscura */
+    background: linear-gradient(135deg, #1a0a1a 0%, #2d0a3d 50%, #1a0a1a 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Efecto de "cortinas" de cine en los lados */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 5% 50%, rgba(200, 0, 0, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 95% 50%, rgba(200, 0, 0, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: repeating-linear-gradient(
+        90deg,
+        #666 0px,
+        #666 10px,
+        transparent 10px,
+        transparent 20px
+    );
+    opacity: 0.1;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* LOGIN STYLES */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 56px);
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+    border: 3px solid #cc0000;
+    animation: slideInCard 0.6s ease;
+}
+
+.login-card h2 {
+    color: #667eea;
+    margin-bottom: 30px;
+}
+
+.login-card .form-control,
+.login-card .form-select {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.login-card .form-control:focus,
+.login-card .form-select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+/* TABS DE LOGIN/REGISTRO */
+.login-card .nav-tabs {
+    border-bottom: 2px solid #ddd;
+}
+
+.login-card .nav-tabs .nav-link {
+    color: #666;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.login-card .nav-tabs .nav-link:hover {
+    color: #667eea;
+    border-bottom-color: #667eea;
+}
+
+.login-card .nav-tabs .nav-link.active {
+    color: #667eea;
+    background: transparent;
+    border-bottom-color: #667eea;
+}
+
+.login-card .tab-pane {
+    animation: fadeIn 0.3s ease;
+}
+
+#mainContent {
+    background: #f8f9fa;
+    padding-bottom: 40px;
+}
+
+/* Estilos para Dashboard con tema de cine */
+#Dashboard {
+    position: relative;
+    z-index: 2;
+    padding: 30px 0;
+}
+
+#Dashboard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #cc0000, transparent);
+    box-shadow: 0 10px 20px rgba(200, 0, 0, 0.2);
+}
+
+#Dashboard::after {
+    content: '🎬';
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 4rem;
+    opacity: 0.1;
+    z-index: -1;
+    animation: float 6s ease-in-out infinite;
+}
+
+/* NAVBAR */
+.navbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(90deg, #1a0a1a 0%, #2d0a3d 50%, #1a0a1a 100%) !important;
+    border-bottom: 3px solid #cc0000;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffc107 !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    letter-spacing: 1px;
+}
+
+/* BUSCADOR Y FILTRO */
+.form-control,
+.form-select {
+    border-radius: 5px;
+    border: 2px solid #ddd;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #cc0000;
+    box-shadow: 0 0 0 0.2rem rgba(204, 0, 0, 0.25);
+    background: white;
+}
+
+/* Contenedor de filtros con fondo semitransparente */
+.container.my-4:first-of-type {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 25px 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    margin: 20px auto !important;
+}
+
+/* Título de filtros */
+#Dashboard h4 {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin-bottom: 20px;
+}
+
+/* SLIDER DE PELÍCULAS */
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    overflow: hidden;
+}
+
+.carousel-movies {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 0;
+    scroll-behavior: smooth;
+}
+
+.carousel-movies::-webkit-scrollbar {
+    height: 8px;
+}
+
+.carousel-movies::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.carousel-movies::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 10px;
+}
+
+.carousel-movies::-webkit-scrollbar-thumb:hover {
+    background: #764ba2;
+}
+
+.slider-movie-card {
+    min-width: 180px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.slider-movie-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.slider-movie-info {
+    padding: 10px;
+}
+
+.slider-movie-info h6 {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+    margin: 5px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.slider-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.slider-btn:hover {
+    background: #764ba2;
+    transform: scale(1.1);
+}
+
+.slider-btn:active {
+    transform: scale(0.95);
+}
+
+/* TARJETAS DE PELÍCULAS */
+.movie-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid transparent;
+}
+
+.movie-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(204, 0, 0, 0.4);
+    border-color: #cc0000;
+}
+
+.movie-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Grid de películas con contenedor transparente */
+#gridPeliculas {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 20px rgba(204, 0, 0, 0.1);
+}
+
+.movie-content {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    line-height: 1.3;
+    min-height: 2.6em;
+}
+
+.movie-genre {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+}
+
+.movie-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.movie-rating {
+    color: #ffc107;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.movie-description {
+    font-size: 0.85rem;
+    color: #555;
+    margin-bottom: 12px;
+    flex-grow: 1;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.movie-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.btn-sm {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    border-radius: 5px;
+}
+
+.btn-info {
+    background: #17a2b8;
+    color: white;
+    border: none;
+}
+
+.btn-info:hover {
+    background: #138496;
+    color: white;
+}
+
+.btn-warning {
+    background: #ffc107;
+    color: #333;
+    border: none;
+}
+
+.btn-warning:hover {
+    background: #e0a800;
+    color: #333;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+    color: white;
+}
+
+/* MODALES */
+.modal-header {
+    background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+    color: white;
+    border-bottom: 3px solid #ff0000;
+}
+
+.modal-title {
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.form-label {
+    font-weight: 500;
+    color: #333;
+}
+
+.modal-content {
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid #ddd;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .login-card {
+        padding: 30px 20px;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .slider-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .movie-card {
+        margin-bottom: 15px;
+    }
+
+    .carousel-movies {
+        gap: 15px;
+    }
+
+    .slider-movie-card {
+        min-width: 150px;
+    }
+
+    .slider-movie-card img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    #btnAgregar {
+        width: 40px !important;
+        padding: 8px !important;
+    }
+
+    #btnAgregar i:last-child {
+        display: none;
+    }
+
+    .slider-container {
+        gap: 10px;
+    }
+
+    .carousel-movies {
+        gap: 10px;
+    }
+
+    .slider-movie-card {
+        min-width: 120px;
+    }
+
+    .slider-movie-card img {
+        height: 160px;
+    }
+}
+
+/* Alerta de sin resultados */
+#sinResultados {
+    background: rgba(17, 103, 182, 0.2) !important;
+    border: 2px solid rgba(17, 103, 182, 0.5) !important;
+    color: white !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInCard {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.movie-card {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Estilos para el modal mejorado */
+.modal-content {
+    box-shadow: 0 10px 40px rgba(200, 0, 0, 0.3);
+}
+
+.form-control, .form-select {
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: #495057 !important;
+    border-color: #c80000 !important;
+    box-shadow: 0 0 0 0.2rem rgba(200, 0, 0, 0.25);
+    color: white;
+}
+
+.form-control::placeholder {
+    color: #adc0d8;
+    opacity: 0.7;
+}
+
+#inputImagen {
+    font-size: 0.9rem;
+}
+
+#imagenPreview {
+    box-shadow: 0 8px 24px rgba(200, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+}
+
+#imagenPreview:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 32px rgba(200, 0, 0, 0.6);
+}
+
+.modal-header {
+    padding: 1.5rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    max-height: 65vh;
+    overflow-y: auto;
+}
+
+.modal-body .form-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-label i {
+    margin-right: 0.4rem;
+    color: #c80000;
+}
+
+#btnGuardarPelicula {
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+#btnGuardarPelicula:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(200, 0, 0, 0.4);
+}
+
+.btn-danger {
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    transform: scale(1.05);
+}
